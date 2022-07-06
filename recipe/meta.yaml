@@ -1,5 +1,5 @@
 {% set name = "btrack" %}
-{% set version = "0.4.4" %}
+{% set version = "0.4.5" %}
 
 package:
   name: {{ name|lower }}
@@ -7,14 +7,14 @@ package:
 
 source:
   url: https://github.com/quantumjot/BayesianTracker/archive/refs/tags/v{{ version }}.tar.gz
-  sha256: 0790fa338001718f0e42e8ea944c6a94d3938f2638766501fa82e3b3c9d0d26e
+  sha256: 41f65dec33839c31af343192873b7ff1d19f5c90496a20ea91a4f08b6233d67a
   patches:
     - makefile.patch
     - eigen_includes.patch
 
 build:
   number: 0
-  skip: true  # [win]
+  skip: true  # [win or py==37]
 
 requirements:
   build:
@@ -27,13 +27,15 @@ requirements:
   run:
     - cvxopt >=1.2.0
     - h5py >=2.10.0
-    - matplotlib-base >=3.1.1
+    - napari >=0.4.16
+    - napari-plugin-engine
     - numpy >=1.17.3
     - pooch >=1.0.0
     - pydantic >=1.9.0
     - python
     - scikit-image >=0.16.2
-    - scipy >=1.3.1
+    # Listed upstream, but not really used anywhere!
+    # - scipy >=1.3.1
 
 test:
   imports:
