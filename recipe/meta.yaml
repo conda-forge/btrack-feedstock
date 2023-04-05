@@ -1,5 +1,5 @@
 {% set name = "btrack" %}
-{% set version = "0.4.6" %}
+{% set version = "0.5.2" %}
 
 package:
   name: {{ name|lower }}
@@ -7,13 +7,13 @@ package:
 
 source:
   url: https://github.com/quantumjot/BayesianTracker/archive/refs/tags/v{{ version }}.tar.gz
-  sha256: 997d303614d60001769f1d65fd4917b92975deb5653bcf8da788c414ad7a27db
+  sha256: eb1abc5c025431ead30549276b32b6e983ec0274974f34e637bf840091074f89
   patches:
     - makefile.patch
     - eigen_includes.patch
 
 build:
-  number: 1
+  number: 0
   skip: true  # [win or py==37]
 
 requirements:
