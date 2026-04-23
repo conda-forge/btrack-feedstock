@@ -1,11 +1,11 @@
-About btrack
-============
+About btrack-feedstock
+======================
+
+Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/btrack-feedstock/blob/main/LICENSE.txt)
 
 Home: https://github.com/quantumjot/BayesianTracker
 
 Package license: MIT
-
-Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/btrack-feedstock/blob/main/LICENSE.txt)
 
 Summary: A framework for Bayesian multi-object tracking
 
