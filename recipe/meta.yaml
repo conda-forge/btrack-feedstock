@@ -1,41 +1,46 @@
 {% set name = "btrack" %}
-{% set version = "0.4.6" %}
+{% set version = "0.7.0" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://github.com/quantumjot/BayesianTracker/archive/refs/tags/v{{ version }}.tar.gz
-  sha256: 997d303614d60001769f1d65fd4917b92975deb5653bcf8da788c414ad7a27db
+  url: https://pypi.org/packages/source/b/btrack/btrack-{{ version }}.tar.gz
+  sha256: 56f29ba3e0b68bc6c87f2e4a6bbdf2cc8c0ca75f21d0caabf3801299976da782
   patches:
-    - makefile.patch
     - eigen_includes.patch
 
 build:
-  number: 1
-  skip: true  # [win or py==37]
+  number: 0
+  skip: true  # [win or py<39]
 
 requirements:
   build:
     - {{ compiler('cxx') }}
+    - {{ stdlib('c') }}
     - make
   host:
     - pip
     - python
     - eigen
+    - setuptools
+    - setuptools-scm
+    - wheel
   run:
-    - cvxopt >=1.2.0
+    - cvxopt >=1.3.1
     - h5py >=2.10.0
     - napari >=0.4.16
+    - libgl-devel  # [linux]
     - napari-plugin-engine
     - numpy >=1.17.3
+    - pandas >=2.0.3
     - pooch >=1.0.0
-    - pydantic >=1.9.0
+    - pydantic >=2.0.0
     - python
     - scikit-image >=0.16.2
-    # Listed upstream, but not really used anywhere!
-    # - scipy >=1.3.1
+    - scipy >=1.3.1
+    - tqdm >=4.65.0
 
 test:
   imports:
@@ -43,11 +48,12 @@ test:
   commands:
     - pip check
     - python -c "from btrack.libwrapper import get_library; print(get_library())"
+    - python -c "from importlib.metadata import version; assert version('btrack') == '{{ version }}'"
   requires:
     - pip
 
 about:
-  home: https://github.com/quantumjot/BayesianTracker
+  home: https://github.com/quantumjot/btrack
   summary: A framework for Bayesian multi-object tracking
   license: MIT
   license_file: LICENSE.md
