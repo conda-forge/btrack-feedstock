@@ -31,6 +31,7 @@ requirements:
     - cvxopt >=1.3.1
     - h5py >=2.10.0
     - napari >=0.4.16
+    - libgl-devel  # [linux]
     - napari-plugin-engine
     - numpy >=1.17.3
     - pandas >=2.0.3
